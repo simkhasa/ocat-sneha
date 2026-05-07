@@ -1,13 +1,31 @@
-import { AssessmentRepository } from '../../infrastructure/repositories/index.js';
+import Axios from '../utils/http.config';
 
-export const AssessmentService = {
-  async create(data) {
+export class AssessmentService {
+  static submit(assessment) {
     try {
-      const result = await AssessmentRepository.create(data);
-      return result;
+      console.log(assessment);
+      return Axios.post(`/assessments`, assessment)
+        .then((response) => response.data);
     } catch (err) {
-      console.error(`Error in AssessmentService.create:`, err);
-      throw err;
+      throw new Error(`${err.response.statusText} - ${err.response.data.message}`);
     }
-  },
-};
+  }
+
+  static getList() {
+    try {
+      return Axios.get(`/assessments`)
+        .then((response) => response.data.data.assessments);
+    } catch (err) {
+      throw new Error(`${err.response.statusText} - ${err.response.data.message}`);
+    }
+  }
+
+  static delete(id) {
+    try {
+      return Axios.delete(`/assessments/${id}`)
+        .then((response) => response.data);
+    } catch (err) {
+      throw new Error(`${err.response.statusText} - ${err.response.data.message}`);
+    }
+  }
+}

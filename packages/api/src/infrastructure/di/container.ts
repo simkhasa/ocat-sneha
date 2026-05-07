@@ -7,8 +7,10 @@ import { PasswordService } from '../../application/services/PasswordService';
 import { createLogger, Logger } from '../logging/logger';
 import { CreateAssessmentUseCase } from '../../application/features/assessments/create/useCase';
 import { GetAssessmentListUseCase } from '../../application/features/assessments/getList/useCase';
+import { DeleteAssessmentUseCase } from '../../application/features/assessments/delete/useCase';
 import { CreateAssessmentController } from '../../application/features/assessments/create/controller';
 import { GetAssessmentListController } from '../../application/features/assessments/getList/controller';
+import { DeleteAssessmentController } from '../../application/features/assessments/delete/controller';
 
 // Simple DI container implementation
 const container = new Container();
@@ -26,10 +28,12 @@ container.bind(IAssessmentRepository).to(AssessmentRepository);
 // Bind use cases
 container.bind(CreateAssessmentUseCase).toSelf();
 container.bind(GetAssessmentListUseCase).toSelf();
+container.bind(DeleteAssessmentUseCase).toSelf();
 
 // Bind controllers
 container.bind(CreateAssessmentController).toSelf();
 container.bind(GetAssessmentListController).toSelf();
+container.bind(DeleteAssessmentController).toSelf();
 
 // Bind services
 container.bind(IPasswordService).to(PasswordService);
