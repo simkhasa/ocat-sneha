@@ -1,4 +1,4 @@
-import { AssessmentService } from './assessment.service';
+import { AssessmentService } from './AssessmentService.js';
 
 export {
   AssessmentService,

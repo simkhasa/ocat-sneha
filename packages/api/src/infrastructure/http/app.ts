@@ -5,7 +5,6 @@ import createError from 'http-errors';
 import cors from 'cors';
 import { router } from '../../presentation';
 import { ErrorHandler } from '../../application/utils/ErrorHandler';
-import { BooleanParser } from '../../application/utils/BooleanParser';
 
 export function createApp(): express.Application {
   const app = express();
@@ -17,7 +16,6 @@ export function createApp(): express.Application {
     nocache(),
     express.json(),
     express.urlencoded({ extended: false }),
-    BooleanParser,
   );
 
   // Routes

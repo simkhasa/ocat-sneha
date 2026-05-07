@@ -4,18 +4,24 @@ import { AssessmentService } from '../../services/AssessmentService';
 export const AssessmentList = () => {
   const [ assessments, setAssessments ] = useState([]);
 
-  // fetch all assessments using the AssessmentService.getList function from OCAT/client/services/AssessmentService.js
   useEffect(() => {
     const fetchAssessments = async () => {
-      setAssessments(await AssessmentService.getList());
+      const list = await AssessmentService.getList();
+      setAssessments(list);
     };
+
     fetchAssessments();
   }, []);
 
   return <div>
-    {/*
-          List goes here
-          Please use the library react-table https://www.npmjs.com/package/react-table
-      */}
+    <h2>Assessment List</h2>
+    <ul>
+      {assessments.length === 0 ?
+          <li>No assessments available yet.</li> :
+          assessments.map((assessment) =>
+            <li key={assessment.id || assessment._id || assessment.name || assessment.score}>
+              {assessment.catName || assessment.name || `Untitled`} — score {assessment.score ?? `N/A`}
+            </li>)}
+    </ul>
   </div>;
 };

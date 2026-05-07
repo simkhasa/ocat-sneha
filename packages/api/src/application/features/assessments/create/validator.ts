@@ -25,10 +25,10 @@ export const createAssessmentSchema = Joi.object<CreateAssessmentDTO>({
     }),
 
   riskLevel: Joi.string()
-    .valid(`low`, `medium`, `high`)
+    .valid(`Low`, `Medium`, `High`, `Critical`)
     .required()
     .messages({
-      'any.only': `Risk level must be low, medium, or high`,
+      'any.only': `Risk level must be Low, Medium, High, or Critical`,
       'any.required': `Risk level is required`,
     }),
 

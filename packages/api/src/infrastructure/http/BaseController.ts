@@ -13,9 +13,13 @@ export abstract class BaseController {
   }
 
   private ok<T>(req: Request, res: Response, dto?: T): Response {
-    if (req.query.redirectTo) {
-      // eslint-disable-next-line @typescript-eslint/no-base-to-string
-      res.append(`Deprecation`, `WARNING - endpoint is deprecated, use ${req.query.redirectTo.toString()} instead`);
+    try {
+      if (req.query?.redirectTo) {
+        // eslint-disable-next-line @typescript-eslint/no-base-to-string
+        res.append(`Deprecation`, `WARNING - endpoint is deprecated, use ${req.query.redirectTo.toString()} instead`);
+      }
+    } catch {
+      // Ignore query errors
     }
 
     const statusCode = res.get(`Deprecation`) ? 299 : 200;

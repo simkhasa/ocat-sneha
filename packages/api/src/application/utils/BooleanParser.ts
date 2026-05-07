@@ -55,7 +55,11 @@ const booleanify = (val: string): boolean | string => {
 };
 
 export const BooleanParser = (req: Request, res: Response, next: NextFunction) => {
-  req.query = parseObject(req.query);
+  try {
+    Object.assign(req.query, parseObject(req.query));
+  } catch {
+    // Ignore if query is read-only
+  }
   req.body = parseObject(req.body);
   next();
 };

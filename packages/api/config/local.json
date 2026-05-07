@@ -1,0 +1,9 @@
+{
+  "database": {
+    "host": "localhost",
+    "username": "postgres",
+    "password": "mysecretpassword",
+    "database": "ocat",
+    "port": 5432
+  }
+}

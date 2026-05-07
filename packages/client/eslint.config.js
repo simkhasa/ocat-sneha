@@ -76,6 +76,9 @@ export default tseslint.config(
         propElementValues: `always`,
         props: `never`,
       }],
+      "react/jsx-uses-vars": 2,
+      "react/jsx-uses-react": 2,
+
       "react/jsx-curly-newline": [ 2, `consistent` ],
       "react/jsx-curly-spacing": [ 2, {
         children: true,
